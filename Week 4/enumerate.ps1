@@ -1,3 +1,6 @@
+# 0.5 - Creating the C:\temp file path
+New-Item -ItemType Directory -Path "C:\temp" -Force
+
 # 1 - Current user, groups, and privileges
 whoami /all | Out-File "C:\temp\01_user_info.txt"
 
