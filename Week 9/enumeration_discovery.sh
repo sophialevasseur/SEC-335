@@ -102,3 +102,11 @@ find / -xdev -type f -perm -0002 2>/dev/null > "$OUTDIR/31_writable_files.txt" 2
 
 # 32: Files opened by running processes, including deleted-but-still-open files
 lsof > "$OUTDIR/32_files_and_processes.txt" 2>&1
+
+# Compression: 
+
+tar -czvf enum_out.tar.gz "$OUTDIR/"   
+7z a enum_out.7z "$OUTDIR/"  
+pwsh -Command "Compress-Archive -Path $OUTDIR -DestinationPath enum_out_pscompress.zip -Force"
+
+
