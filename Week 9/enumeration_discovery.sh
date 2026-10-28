@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OUTDIR="command_output"
+OUTDIR="${OUTDIR:-/tmp/enumeration}"
 mkdir -p "$OUTDIR"
 
 # Enumeration Commands:
@@ -102,6 +102,9 @@ find / -xdev -type f -perm -0002 2>/dev/null > "$OUTDIR/31_writable_files.txt" 2
 
 # 32: Files opened by running processes, including deleted-but-still-open files
 lsof > "$OUTDIR/32_files_and_processes.txt" 2>&1
+
+echo "Done: $(ls -1 "$OUTDIR"/*.txt | wc -l) output files in $OUTDIR"
+find "$OUTDIR" -name '*.txt' -empty -print | sed 's/^/EMPTY FILE: /'
 
 # Compression: 
 
